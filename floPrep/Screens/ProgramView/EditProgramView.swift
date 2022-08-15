@@ -15,11 +15,14 @@ struct EditProgramView: View {
     var body: some View {
         VStack {
             HStack(spacing: 44) {
-                XDismissButton()
+                
+//                XDismissButton()
                 // go back to programView
+                
                 Text("Edit Program")
                     .font(.largeTitle)
-                PlusDismissButton()
+                
+//                PlusDismissButton()
                 // go back to programView?? wat
             }
             

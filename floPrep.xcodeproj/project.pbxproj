@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		793C0D1B28AAC0F300BF7EDC /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C0D1A28AAC0F300BF7EDC /* TodayViewModel.swift */; };
 		79A1D06B28A9A08800ABB225 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A1D06A28A9A08800ABB225 /* WorkoutView.swift */; };
 		79A1D06D28A9A08F00ABB225 /* ProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A1D06C28A9A08F00ABB225 /* ProgramView.swift */; };
 		79A1D06F28A9A09E00ABB225 /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A1D06E28A9A09E00ABB225 /* RoutineView.swift */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		793C0D1A28AAC0F300BF7EDC /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		79A1D06A28A9A08800ABB225 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		79A1D06C28A9A08F00ABB225 /* ProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramView.swift; sourceTree = "<group>"; };
 		79A1D06E28A9A09E00ABB225 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 			isa = PBXGroup;
 			children = (
 				79A1D07028A9A0A700ABB225 /* TodayView.swift */,
+				793C0D1A28AAC0F300BF7EDC /* TodayViewModel.swift */,
 			);
 			path = TodayView;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				79A1D06F28A9A09E00ABB225 /* RoutineView.swift in Sources */,
 				79A1D07D28A9ACA600ABB225 /* NewRoutineView.swift in Sources */,
 				79A1D07328A9A13600ABB225 /* Color+Ext.swift in Sources */,
+				793C0D1B28AAC0F300BF7EDC /* TodayViewModel.swift in Sources */,
 				79A1D06B28A9A08800ABB225 /* WorkoutView.swift in Sources */,
 				79A1D07F28A9AF8D00ABB225 /* ProgramViewModel.swift in Sources */,
 				79A1D07528A9A69A00ABB225 /* EditProgramView.swift in Sources */,

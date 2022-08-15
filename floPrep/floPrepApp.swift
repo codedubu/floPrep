@@ -12,7 +12,8 @@ struct floPrepApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-            ProgramView()
+//            ProgramView()
+                TodayView()
             }
         }
     }

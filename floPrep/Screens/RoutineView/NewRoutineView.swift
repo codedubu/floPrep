@@ -14,7 +14,7 @@ struct NewRoutineView: View {
     var body: some View {
         VStack {
             HStack {
-                XDismissButton()
+//                XDismissButton()
                 Text("New Routine")
                     .font(.largeTitle)
             }
@@ -27,6 +27,8 @@ struct NewRoutineView: View {
             
             if !routineName.isEmpty {
                 TrainingButton()
+                // take you into TodayView
+
                 // also needs to check if workoutCell's all have values in them
                 // workoutName needs to be filled
             }
@@ -41,6 +43,7 @@ struct TrainingButton: View {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .frame(height: 64)
                 .foregroundColor(.brandSecondary)
+            
             HStack(spacing: 12) {
                 PlusDismissButton()
                 Text("Start training")
