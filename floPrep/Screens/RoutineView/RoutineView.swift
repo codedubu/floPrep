@@ -9,6 +9,13 @@ import SwiftUI
 
 struct RoutineView: View {
     var body: some View {
+        
+        // if programs.routines.isEmpty
+//        Text("No routines created. Type in the field above to add one!")
+//            .font(.system(size: 16))
+//            .fontWeight(.light)
+//            .offset(y: 100)
+        
         List {
             RoutineCell(name: "A Day", height: 74)
             RoutineCell(name: "B Day", height: 74)

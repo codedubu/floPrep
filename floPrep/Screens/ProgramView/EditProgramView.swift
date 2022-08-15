@@ -9,7 +9,6 @@ import SwiftUI
 
 struct EditProgramView: View {
     
-    @Binding var isShowingEditProgramView: Bool
     @State var programName = ""
     
     var body: some View {
@@ -40,6 +39,6 @@ struct EditProgramView: View {
 
 struct EditProgramView_Previews: PreviewProvider {
     static var previews: some View {
-        EditProgramView(isShowingEditProgramView: .constant(false))
+        EditProgramView()
     }
 }

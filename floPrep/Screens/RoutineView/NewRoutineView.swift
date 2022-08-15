@@ -21,6 +21,9 @@ struct NewRoutineView: View {
             TextField("Routine name...", text: $routineName )
                 .frame(width: 300 , height: 100)
             
+            Text("Workouts")
+                .font(.title2.bold())
+            
             WorkoutView()
             
             PlusDismissButton()
@@ -45,9 +48,11 @@ struct TrainingButton: View {
                 .foregroundColor(.brandSecondary)
             
             HStack(spacing: 12) {
+                NavigationLink(destination:TodayView()) {
                 PlusDismissButton()
                 Text("Start training")
                     .font(.title2)
+                }
             }
         }
         .frame(width: 264)

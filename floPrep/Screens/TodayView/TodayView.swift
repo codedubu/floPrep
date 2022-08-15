@@ -43,13 +43,13 @@ struct TodayView: View {
                                 .background(
                                     ZStack {
                                         if viewModel.isToday(date: day) {
-                                            Capsule()
+                                            RoundedRectangle(cornerRadius: 14)
                                                 .fill(Color.brandPrimary)
                                                 .matchedGeometryEffect(id: "CURRENTDAY", in: animation)
                                         }
                                     }
                                 )
-                                .contentShape(Capsule())
+                                .contentShape(RoundedRectangle(cornerRadius: 14))
                                 .onTapGesture {
                                     withAnimation {
                                         viewModel.currentDay = day
@@ -84,10 +84,13 @@ struct TodayView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            RoutineCell(name: "Chest", height: 164, width: 164)
-                            RoutineCell(name: "Back", height: 164, width: 164)
-                            RoutineCell(name: "Legs", height: 164, width: 164)
-                            RoutineCell(name: "Explosive", height: 164, width: 164)
+                            RoutineCell(name: "A Day", height: 164, width: 164)
+                            RoutineCell(name: "B Day", height: 164, width: 164)
+                            RoutineCell(name: "Rest", height: 164, width: 164)
+                            RoutineCell(name: "Deload", height: 164, width: 164)
+                        }
+                        .onTapGesture {
+                            // the above scroll view changes into a WorkoutsView??
                         }
                     }
                 } else {
@@ -99,12 +102,7 @@ struct TodayView: View {
                         WorkoutCell(workout: workout)
                     }
                 }
-                
-            } else {
-                ProgressView()
-                    .offset(y: 100)
             }
-            
         }
         .onChange(of: viewModel.currentDay) { newValue in
             viewModel.filterTodayWorkouts()
@@ -189,7 +187,7 @@ struct TodayView: View {
         HStack(spacing: 10) {
             
             Button {
-                
+                print("list")
             } label: {
                 Image(systemName: "list.bullet")
                     .resizable()
@@ -209,7 +207,7 @@ struct TodayView: View {
             .hCenter()
             
             Button {
-                
+                print("gear")
             } label: {
                 Image(systemName: "gearshape.fill")
                     .resizable()

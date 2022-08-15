@@ -9,12 +9,17 @@ import SwiftUI
 
 struct WorkoutView: View {
     var body: some View {
+        
+        // if programs.routines.workouts.isEmpty
+//        Text("No workouts created. Type in the field above to add one!")
+//            .font(.system(size: 16))
+//            .fontWeight(.light)
+//            .offset(y: 100)
         List {
             WorkoutCell(name: "Bench")
             WorkoutCell(name: "Squat")
             WorkoutCell(name: "Pendlay Row")
         }
-        
     }
 }
 
@@ -27,7 +32,7 @@ struct WorkoutCell: View {
         ZStack {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .frame(height: 74)
-                .foregroundColor(.brandSecondary)
+                .foregroundColor(.brandPrimary)
             HStack {
                 Text(name)
                     .font(.title2)

@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct ProgramView: View {
-    
+        
     @State var programName = ""
-    @StateObject var viewModel = ProgramViewModel()
     
     var body: some View {
         
@@ -19,9 +18,16 @@ struct ProgramView: View {
             TextField("Program name...", text: $programName)
                 .frame(width: 300 , height: 100)
             
+//            if programs.isEmpty {
+//                Text("No programs created. Type in the field above to add one!")
+//                    .font(.system(size: 16))
+//                    .fontWeight(.light)
+//                    .offset(y: 100)
+//            }
+            
             List {
                 ForEach(0..<1) { _ in
-                    NavigationLink(destination: EditProgramView(isShowingEditProgramView: $viewModel.isShowingDetailView)) {
+                    NavigationLink(destination: EditProgramView()) {
                         ProgramCell()
                     }
                 }
