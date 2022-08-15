@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		793C0D1B28AAC0F300BF7EDC /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C0D1A28AAC0F300BF7EDC /* TodayViewModel.swift */; };
+		793C0D1D28AAF18700BF7EDC /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C0D1C28AAF18700BF7EDC /* View+Ext.swift */; };
 		79A1D06B28A9A08800ABB225 /* WorkoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A1D06A28A9A08800ABB225 /* WorkoutView.swift */; };
 		79A1D06D28A9A08F00ABB225 /* ProgramView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A1D06C28A9A08F00ABB225 /* ProgramView.swift */; };
 		79A1D06F28A9A09E00ABB225 /* RoutineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A1D06E28A9A09E00ABB225 /* RoutineView.swift */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		793C0D1A28AAC0F300BF7EDC /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
+		793C0D1C28AAF18700BF7EDC /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		79A1D06A28A9A08800ABB225 /* WorkoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutView.swift; sourceTree = "<group>"; };
 		79A1D06C28A9A08F00ABB225 /* ProgramView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgramView.swift; sourceTree = "<group>"; };
 		79A1D06E28A9A09E00ABB225 /* RoutineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutineView.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 			children = (
 				79CC179828A449F30051C6B9 /* Assets.xcassets */,
 				79A1D07228A9A13600ABB225 /* Color+Ext.swift */,
+				793C0D1C28AAF18700BF7EDC /* View+Ext.swift */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 			files = (
 				79CC179528A449F10051C6B9 /* floPrepApp.swift in Sources */,
 				79CC17A528A44A210051C6B9 /* Routine.swift in Sources */,
+				793C0D1D28AAF18700BF7EDC /* View+Ext.swift in Sources */,
 				79A1D06D28A9A08F00ABB225 /* ProgramView.swift in Sources */,
 				79A1D07128A9A0A700ABB225 /* TodayView.swift in Sources */,
 				79A1D07A28A9A7F200ABB225 /* PlusDismissButton.swift in Sources */,

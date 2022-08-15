@@ -10,8 +10,8 @@ import SwiftUI
 struct RoutineView: View {
     var body: some View {
         List {
-            RoutineCell(name: "A Day")
-            RoutineCell(name: "B Day")
+            RoutineCell(name: "A Day", height: 74)
+            RoutineCell(name: "B Day", height: 74)
         }
     }
 }
@@ -20,15 +20,18 @@ struct RoutineView: View {
 struct RoutineCell: View {
     
     var name: String
+    var height: CGFloat
+    var width: CGFloat?
     
     var body: some View {
         
         ZStack {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .frame(height: 74)
-                .foregroundColor(.brandSecondary)
+                .frame(width: width, height: height)
+                .foregroundColor(.brandPrimary)
             Text(name)
                 .font(.title)
+                .foregroundColor(.white)
         }
         .listRowBackground(Color.clear)
         .listRowSeparator(.hidden)

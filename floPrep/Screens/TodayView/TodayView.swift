@@ -59,11 +59,7 @@ struct TodayView: View {
                         }
                         .padding(.horizontal)
                     }
-                    
-                    Text("B Day")
-                        .font(.title.bold())
-                    
-                    TasksView()
+                    WorkoutsView()
                     
                 } header: {
                     HeaderView()
@@ -75,17 +71,30 @@ struct TodayView: View {
     }
     
     
-    func TasksView() -> some View {
+    func WorkoutsView() -> some View {
+        
         LazyVStack(spacing: 18) {
             
             if let workouts = viewModel.filteredWorkouts {
                 
                 if workouts.isEmpty {
-                    Text("No workouts found. Go add some!")
-                        .font(.system(size:16))
-                        .fontWeight(.light)
-                        .offset(y: 100)
+                    Text("What's the plan, pal?")
+                        .font(.title.bold())
+                        .padding(.bottom, 64)
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            RoutineCell(name: "Chest", height: 164, width: 164)
+                            RoutineCell(name: "Back", height: 164, width: 164)
+                            RoutineCell(name: "Legs", height: 164, width: 164)
+                            RoutineCell(name: "Explosive", height: 164, width: 164)
+                        }
+                    }
                 } else {
+                    
+                    Text("B Day")
+                        .font(.title.bold())
+                    
                     ForEach(workouts) { workout in
                         WorkoutCell(workout: workout)
                     }
@@ -152,8 +161,7 @@ struct TodayView: View {
                     
                     
                     Button {
-                        
-                        // toggle if workout is completed or not
+                        // workout.isCompleted.toggle()
                         
                     } label: {
                         Image(systemName: workout.isCompleted ? "checkmark" : "pencil")
@@ -162,7 +170,7 @@ struct TodayView: View {
                             .background(Color.brandSecondary, in: RoundedRectangle(cornerRadius: 12))
                     }
                     .padding(.top, 10)
-
+                    
                 }
                 
             }
@@ -222,32 +230,3 @@ struct TodayView_Previews: PreviewProvider {
     }
 }
 
-
-extension View {
-    func hLeading() -> some View {
-        self
-            .frame(maxWidth: .infinity, alignment: .leading)
-    }
-    
-    func hTrailing() -> some View {
-        self
-            .frame(maxWidth: .infinity, alignment: .trailing)
-    }
-    
-    func hCenter() -> some View {
-        self
-            .frame(maxWidth: .infinity, alignment: .center)
-    }
-    
-    func getSafeArea() -> UIEdgeInsets {
-        guard let screen = UIApplication.shared.connectedScenes.first as? UIWindowScene else {
-            return .zero
-        }
-        
-        guard let safeArea = screen.windows.first?.safeAreaInsets else {
-            return.zero
-        }
-        
-        return safeArea
-    }
-}

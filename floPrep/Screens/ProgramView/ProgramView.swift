@@ -45,9 +45,10 @@ struct ProgramCell: View {
         ZStack {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .frame(height: 74)
-                .foregroundColor(.brandSecondary)
+                .foregroundColor(.brandPrimary)
             Text("Fierce Five")
                 .font(.title)
+                .foregroundColor(.white)
         }
         .listRowBackground(Color.clear)
         .listRowSeparator(.hidden)
