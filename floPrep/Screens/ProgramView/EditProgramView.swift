@@ -9,36 +9,42 @@ import SwiftUI
 
 struct EditProgramView: View {
     
-    @State var programName = ""
+    @Binding var program: Program
+    @State var routineName = ""
     
     var body: some View {
         VStack {
-            HStack(spacing: 44) {
-                
-//                XDismissButton()
-                // go back to programView
-                
+            HStack {
                 Text("Edit Program")
                     .font(.largeTitle)
-                
-//                PlusDismissButton()
-                // go back to programView?? wat
             }
             
-            TextField("Fierce Five", text: $programName)
+            TextField(program.name, text: $program.name)
                 .frame(width: 300 , height: 100)
-            
-            RoutineView()
-            
-            NavigationLink(destination: NewRoutineView()) {
-                NewRoutineButton()
+            Form {
+                TextField("Enter routine...", text: $routineName )
             }
+            .frame(height: 80)
+            
+            RoutineView(routines: $program.routines)
+            
+            Button("Save") {
+                newRoutine()
+            }.disabled(routineName.isEmpty)
         }
+    }
+    
+    func newRoutine() {
+        let newRoutine = Routine(name: routineName)
+        program.routines.append(newRoutine)
+        routineName = ""
     }
 }
 
-struct EditProgramView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditProgramView()
-    }
-}
+
+//
+//struct EditProgramView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditProgramView(program: )
+//    }
+//}

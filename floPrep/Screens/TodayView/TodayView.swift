@@ -84,10 +84,7 @@ struct TodayView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            RoutineCell(name: "A Day", height: 164, width: 164)
-                            RoutineCell(name: "B Day", height: 164, width: 164)
-                            RoutineCell(name: "Rest", height: 164, width: 164)
-                            RoutineCell(name: "Deload", height: 164, width: 164)
+//                            RoutineCell(routine: rou, name: <#T##String#>, height: <#T##CGFloat#>)
                         }
                         .onTapGesture {
                             // the above scroll view changes into a WorkoutsView??
@@ -174,8 +171,8 @@ struct TodayView: View {
             }
             .foregroundColor(workout.isCompleted ?  .white : .black)
             .padding()
-            .hLeading()
             .background(workout.isCompleted ? Color.brandPrimary : .white)
+            .hLeading()
             .cornerRadius(12)
             
         }

@@ -9,12 +9,14 @@ import SwiftUI
 
 @main
 struct floPrepApp: App {
+    @StateObject private var programContext = gymFloContext()
+    
     var body: some Scene {
         WindowGroup {
             NavigationView {
-            ProgramView()
-//                TodayView()
+                ProgramView(gymFloContext: programContext)
             }
+            .navigationViewStyle(.stack)
         }
     }
 }

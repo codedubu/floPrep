@@ -7,35 +7,26 @@
 
 import SwiftUI
 
-struct NewRoutineView: View {
-    
+struct EditRoutineView: View {
+    @Binding var routine: Routine
     @State var routineName = ""
     
     var body: some View {
         VStack {
             HStack {
-//                XDismissButton()
-                Text("New Routine")
+                Text("Edit Routine")
                     .font(.largeTitle)
             }
-            TextField("Routine name...", text: $routineName )
-                .frame(width: 300 , height: 100)
-            
-            Text("Workouts")
-                .font(.title2.bold())
-            
-            WorkoutView()
-            
-            PlusDismissButton()
-            
-            if !routineName.isEmpty {
-                TrainingButton()
-                // take you into TodayView
-
-                // also needs to check if workoutCell's all have values in them
-                // workoutName needs to be filled
-            }
         }
+        
+        TextField("Routine name...", text: $routine.name )
+            .frame(width: 300 , height: 100)
+        
+        Text("Workouts")
+            .font(.title2.bold())
+        
+        WorkoutView()
+        PlusDismissButton()
     }
 }
 
@@ -49,9 +40,9 @@ struct TrainingButton: View {
             
             HStack(spacing: 12) {
                 NavigationLink(destination:TodayView()) {
-                PlusDismissButton()
-                Text("Start training")
-                    .font(.title2)
+                    PlusDismissButton()
+                    Text("Start training")
+                        .font(.title2)
                 }
             }
         }
@@ -76,8 +67,8 @@ struct NewRoutineButton: View {
     }
 }
 
-struct NewRoutineView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewRoutineView()
-    }
-}
+//struct NewRoutineView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditRoutineView(routine: <#Binding<Routine>#>)
+//    }
+//}

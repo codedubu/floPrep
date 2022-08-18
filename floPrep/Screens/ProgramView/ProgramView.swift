@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ProgramView: View {
-        
+    @ObservedObject var gymFloContext: gymFloContext
+    
     @State var programName = ""
     
     var body: some View {
@@ -18,33 +19,32 @@ struct ProgramView: View {
             TextField("Program name...", text: $programName)
                 .frame(width: 300 , height: 100)
             
-//            if programs.isEmpty {
-//                Text("No programs created. Type in the field above to add one!")
-//                    .font(.system(size: 16))
-//                    .fontWeight(.light)
-//                    .offset(y: 100)
-//            }
-            
+            //            Text("No programs created. Type in the field above to add one!")
+            //                .font(.system(size: 16))
+            //                .fontWeight(.light)
             List {
-                ForEach(0..<1) { _ in
-                    NavigationLink(destination: EditProgramView()) {
-                        ProgramCell()
+                ForEach($gymFloContext.programs) { $program in
+                    NavigationLink(destination: EditProgramView(program: $program)) {
+                        ProgramCell(program: program)
                     }
                 }
-                
-                if !programName.isEmpty {
-                    Button("Save") {
-                        //append(newProgram) to list above.
-                        print("Program saved.")
-                        //programName = ""
-                    }
-                }
+                .onDelete(perform: gymFloContext.deleteProgram)
             }
+            
+            Button("Save") {
+                gymFloContext.createProgram(with: programName)
+                print("Program saved.")
+                programName = ""
+            }
+            .disabled(programName.isEmpty)
         }
     }
 }
 
+
 struct ProgramCell: View {
+    
+    let program: Program
     
     var body: some View {
         
@@ -52,7 +52,7 @@ struct ProgramCell: View {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .frame(height: 74)
                 .foregroundColor(.brandPrimary)
-            Text("Fierce Five")
+            Text(program.name)
                 .font(.title)
                 .foregroundColor(.white)
         }
@@ -62,8 +62,11 @@ struct ProgramCell: View {
 }
 
 struct ProgramView_Previews: PreviewProvider {
+    
     static var previews: some View {
-        ProgramView()
+        Group {
+            ProgramView(gymFloContext: gymFloContext())
+        }
     }
 }
 

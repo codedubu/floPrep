@@ -10,7 +10,6 @@ import SwiftUI
 
 final class TodayViewModel: ObservableObject {
     
-    
     @Published var storedWorkouts = [
         Workout(name: "Front Squat", sets: 3, reps: 5, weight: 185, workoutDate: Date(), isCompleted: true),
         Workout(name: "Overhead Press", sets: 3, reps: 5, weight: 95, workoutDate: Date(), isCompleted: true),
@@ -22,7 +21,6 @@ final class TodayViewModel: ObservableObject {
 
     ]
     
-    
     @Published var currentWeek: [Date] = []
     @Published var currentDay: Date = Date()
     @Published var filteredWorkouts: [Workout]?
@@ -31,6 +29,7 @@ final class TodayViewModel: ObservableObject {
         retrieveCurrentWeek()
         filterTodayWorkouts()
     }
+    
     
     func filterTodayWorkouts() {
         DispatchQueue.global(qos: .userInteractive).async {
@@ -47,6 +46,7 @@ final class TodayViewModel: ObservableObject {
             }
         }
     }
+    
     
     func retrieveCurrentWeek() {
         
@@ -65,6 +65,7 @@ final class TodayViewModel: ObservableObject {
         }
     }
     
+    
     func extractDate(date: Date, format: String) -> String {
         
         let formatter = DateFormatter()
@@ -72,6 +73,7 @@ final class TodayViewModel: ObservableObject {
         formatter.dateFormat = format
         return formatter.string(from: date)
     }
+    
     
     func isToday(date: Date) -> Bool {
         

@@ -8,25 +8,33 @@
 import SwiftUI
 
 struct RoutineView: View {
+    @Binding var routines: [Routine]
+    
     var body: some View {
-        
-        // if programs.routines.isEmpty
-//        Text("No routines created. Type in the field above to add one!")
-//            .font(.system(size: 16))
-//            .fontWeight(.light)
-//            .offset(y: 100)
+        Text("No routines created. Type in the field above to add one!")
+            .font(.system(size: 16))
+            .fontWeight(.light)
+            .offset(y: 100)
         
         List {
-            RoutineCell(name: "A Day", height: 74)
-            RoutineCell(name: "B Day", height: 74)
+            ForEach($routines) { $routine in
+                NavigationLink(destination: EditRoutineView(routine: $routine)) {
+                    RoutineCell(routine: $routine, height: 150)
+                }
+            }
+            .onDelete(perform: deleteRoutine)
         }
+    }
+    
+    func deleteRoutine(_ indexSet: IndexSet) {
+        routines.remove(atOffsets: indexSet)
     }
 }
 
-
 struct RoutineCell: View {
     
-    var name: String
+    @Binding var routine: Routine
+    
     var height: CGFloat
     var width: CGFloat?
     
@@ -36,7 +44,7 @@ struct RoutineCell: View {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .frame(width: width, height: height)
                 .foregroundColor(.brandPrimary)
-            Text(name)
+            Text(routine.name)
                 .font(.title)
                 .foregroundColor(.white)
         }
@@ -44,9 +52,8 @@ struct RoutineCell: View {
         .listRowSeparator(.hidden)
     }
 }
-
-struct RoutineView_Previews: PreviewProvider {
-    static var previews: some View {
-        RoutineView()
-    }
-}
+//struct RoutineView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RoutineView()
+//    }
+//}
