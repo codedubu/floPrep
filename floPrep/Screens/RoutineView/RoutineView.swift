@@ -19,21 +19,17 @@ struct RoutineView: View {
         List {
             ForEach($routines) { $routine in
                 NavigationLink(destination: EditRoutineView(routine: $routine)) {
-                    RoutineCell(routine: $routine, height: 150)
+                    RoutineCell(routine: routine, height: 150)
                 }
             }
             .onDelete(perform: deleteRoutine)
         }
     }
-    
-    func deleteRoutine(_ indexSet: IndexSet) {
-        routines.remove(atOffsets: indexSet)
-    }
 }
 
 struct RoutineCell: View {
     
-    @Binding var routine: Routine
+    let routine: Routine
     
     var height: CGFloat
     var width: CGFloat?
@@ -57,3 +53,11 @@ struct RoutineCell: View {
 //        RoutineView()
 //    }
 //}
+
+
+extension RoutineView {
+    
+    func deleteRoutine(_ indexSet: IndexSet) {
+        routines.remove(atOffsets: indexSet)
+    }
+}

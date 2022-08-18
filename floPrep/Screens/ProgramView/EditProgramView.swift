@@ -33,7 +33,10 @@ struct EditProgramView: View {
             }.disabled(routineName.isEmpty)
         }
     }
-    
+}
+
+extension EditProgramView {
+
     func newRoutine() {
         let newRoutine = Routine(name: routineName)
         program.routines.append(newRoutine)

@@ -27,6 +27,7 @@ struct EditRoutineView: View {
         
         WorkoutView()
         PlusDismissButton()
+        TrainingButton()
     }
 }
 
