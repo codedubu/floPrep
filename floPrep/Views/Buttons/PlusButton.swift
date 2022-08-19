@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct PlusDismissButton: View {
+struct PlusButton: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 12)
@@ -25,6 +25,6 @@ struct PlusDismissButton: View {
 
 struct PlusDismissButton_Previews: PreviewProvider {
     static var previews: some View {
-        PlusDismissButton()
+        PlusButton()
     }
 }
