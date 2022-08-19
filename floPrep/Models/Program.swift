@@ -13,7 +13,7 @@ struct Program: Identifiable, Codable, Equatable {
     var routines: [Routine]
     
     init(name: String, routines: [Routine] = []) {
-        self.name = name
-        self.routines = routines
+        self.name       = name
+        self.routines   = routines
     }
 }

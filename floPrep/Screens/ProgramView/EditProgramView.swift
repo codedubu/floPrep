@@ -8,8 +8,8 @@
 import SwiftUI
 
 struct EditProgramView: View {
-    
     @Binding var program: Program
+    
     @State var routineName = ""
     
     var body: some View {
@@ -36,7 +36,7 @@ struct EditProgramView: View {
 }
 
 extension EditProgramView {
-
+    
     func newRoutine() {
         let newRoutine = Routine(name: routineName)
         program.routines.append(newRoutine)
@@ -44,10 +44,11 @@ extension EditProgramView {
     }
 }
 
-
 //
 //struct EditProgramView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        EditProgramView(program: )
 //    }
 //}
+
+

@@ -11,6 +11,7 @@ struct EditRoutineView: View {
     @Binding var routine: Routine
     
     var body: some View {
+        
         VStack {
             HStack {
                 Text("Edit Routine")
@@ -35,12 +36,14 @@ struct EditRoutineView: View {
         TrainingButton()
             .disabled(routine.workouts.isEmpty || routine.name.isEmpty)
     }
+}
+
+extension EditRoutineView {
     
     private func onSave(_ workout: Workout) {
         routine.workouts.append(workout)
     }
 }
-
 
 //struct NewRoutineView_Previews: PreviewProvider {
 //    static var previews: some View {

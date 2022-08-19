@@ -1,5 +1,5 @@
 //
-//  RoutineCell.swift
+//  ProgramCell.swift
 //  floPrep
 //
 //  Created by River McCaine on 8/19/22.
@@ -7,20 +7,16 @@
 
 import SwiftUI
 
-struct RoutineCell: View {
-    
-    let routine: Routine
-    
-    var height: CGFloat
-    var width: CGFloat?
+struct ProgramCell: View {
+    let program: Program
     
     var body: some View {
         
         ZStack {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .frame(width: width, height: height)
+                .frame(height: 74)
                 .foregroundColor(.brandPrimary)
-            Text(routine.name)
+            Text(program.name)
                 .font(.title)
                 .foregroundColor(.white)
         }
@@ -29,8 +25,8 @@ struct RoutineCell: View {
     }
 }
 
-//struct RoutineCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RoutineCell()
-//    }
-//}
+struct ProgramCell_Previews: PreviewProvider {
+    static var previews: some View {
+        ProgramCell(program: Program(name: "Fierce Five"))
+    }
+}

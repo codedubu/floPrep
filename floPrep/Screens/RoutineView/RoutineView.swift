@@ -27,37 +27,16 @@ struct RoutineView: View {
     }
 }
 
-struct RoutineCell: View {
-    
-    let routine: Routine
-    
-    var height: CGFloat
-    var width: CGFloat?
-    
-    var body: some View {
-        
-        ZStack {
-            RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .frame(width: width, height: height)
-                .foregroundColor(.brandPrimary)
-            Text(routine.name)
-                .font(.title)
-                .foregroundColor(.white)
-        }
-        .listRowBackground(Color.clear)
-        .listRowSeparator(.hidden)
-    }
-}
-//struct RoutineView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RoutineView()
-//    }
-//}
-
-
 extension RoutineView {
     
     func deleteRoutine(_ indexSet: IndexSet) {
         routines.remove(atOffsets: indexSet)
     }
 }
+
+//struct RoutineView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        RoutineView()
+//    }
+//}
+
