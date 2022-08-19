@@ -9,12 +9,14 @@ import SwiftUI
 
 struct TodayView: View {
     
-    @StateObject var viewModel = TodayViewModel()
     @Namespace var animation
+    
+    @StateObject var viewModel = TodayViewModel()
+    @Binding var routines: [Routine]
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            
+                        
             LazyVStack(spacing: 15, pinnedViews: [.sectionHeaders]) {
                 
                 Section {
@@ -84,7 +86,10 @@ struct TodayView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-//                            RoutineCell(routine: rou, name: <#T##String#>, height: <#T##CGFloat#>)
+                            
+                            ForEach(routines) { routine in
+                                RoutineCell(routine: routine, height: 164, width: 164)
+                            }
                         }
                         .onTapGesture {
                             // the above scroll view changes into a WorkoutsView??
@@ -219,9 +224,9 @@ struct TodayView: View {
     }
 }
 
-struct TodayView_Previews: PreviewProvider {
-    static var previews: some View {
-        TodayView()
-    }
-}
-
+//struct TodayView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        TodayView()
+//    }
+//}
+//

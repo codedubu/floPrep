@@ -8,7 +8,10 @@
 import SwiftUI
 
 struct EditRoutineView: View {
+    @Environment(\.dismiss) private var dismiss
     @Binding var routine: Routine
+    
+    @State private var showingSheet = false
     
     var body: some View {
         
@@ -16,6 +19,12 @@ struct EditRoutineView: View {
             HStack {
                 Text("Edit Routine")
                     .font(.largeTitle)
+                Button {
+                   dismiss()
+                } label: {
+                    XDismissButton()
+                }
+
             }
         }
         
@@ -27,14 +36,14 @@ struct EditRoutineView: View {
         
         WorkoutView(workouts: $routine.workouts)
         
-        NavigationLink {
-            NewWorkoutView(onSave: onSave)
+        Button {
+            showingSheet.toggle()
         } label: {
             PlusButton()
         }
-        
-        TrainingButton()
-            .disabled(routine.workouts.isEmpty || routine.name.isEmpty)
+        .sheet(isPresented: $showingSheet) {
+            NewWorkoutView(onSave: onSave)
+        }
     }
 }
 

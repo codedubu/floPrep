@@ -10,8 +10,8 @@ import SwiftUI
 struct NewWorkoutView: View {
     
     let onSave: (Workout) -> Void
-    @Environment(\.dismiss) private var dismiss
     
+    @Environment(\.dismiss) private var dismiss
     @State private var workout = Workout(name: "", sets: 0, reps: 0)
     
     var body: some View {
@@ -33,6 +33,7 @@ struct NewWorkoutView: View {
             } label: {
                 PlusButton()
             }
+            .disabled(workout.name.isEmpty)
         }
     }
 }

@@ -13,13 +13,12 @@ struct TrainingButton: View {
         ZStack {
             RoundedRectangle(cornerRadius: 12, style: .continuous)
                 .frame(height: 64)
-                .foregroundColor(.brandSecondary)
+                .foregroundColor(.brandPrimary)
             
             HStack(spacing: 12) {
-                NavigationLink(destination:TodayView()) {
                     Text("Start training")
                         .font(.title2)
-                }
+                        .foregroundColor(.white)
             }
         }
         .frame(width: 264)

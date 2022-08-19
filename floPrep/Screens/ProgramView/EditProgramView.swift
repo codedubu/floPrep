@@ -21,6 +21,7 @@ struct EditProgramView: View {
             
             TextField(program.name, text: $program.name)
                 .frame(width: 300 , height: 100)
+            
             Form {
                 TextField("Enter routine...", text: $routineName )
             }
@@ -31,6 +32,11 @@ struct EditProgramView: View {
             Button("Save") {
                 newRoutine()
             }.disabled(routineName.isEmpty)
+            
+            NavigationLink(destination: TodayView(routines: $program.routines)) {
+                TrainingButton()
+            }
+            .disabled(program.routines.isEmpty || program.name.isEmpty)
         }
     }
 }

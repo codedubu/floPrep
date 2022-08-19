@@ -16,12 +16,20 @@ final class TodayViewModel: ObservableObject {
         Workout(name: "RDL", sets: 3, reps: 8, weight: 145, workoutDate: Date(), isCompleted: false),
         Workout(name: "Lat Pulldown", sets: 3, reps: 8, weight: 80, workoutDate: Date(), isCompleted: false),
         Workout(name: "Bicep Curls", sets: 2, reps: 10, weight: 30, workoutDate: Date(), isCompleted: false),
-        Workout(name: "Ab Work", sets: 2, reps: 15, weight: 0, workoutDate: Date(), isCompleted: false)
+        Workout(name: "Ab Work", sets: 2, reps: 15, weight: 0, workoutDate: Date(), isCompleted: false),
+        
+        Workout(name: "Squat", sets: 3, reps: 5, weight: 235, workoutDate: Date.yesterday, isCompleted: true),
+        Workout(name: "Bench", sets: 3, reps: 5, weight: 14, workoutDate: Date.yesterday, isCompleted: true),
+        Workout(name: "Pendlay Row", sets: 3, reps: 8, weight: 145, workoutDate: Date.yesterday, isCompleted: true),
+        Workout(name: "Face Pulls", sets: 3, reps: 8, weight: 80, workoutDate: Date.yesterday, isCompleted: true),
+        Workout(name: "Tricep Pulldown", sets: 2, reps: 10, weight: 90, workoutDate: Date.yesterday, isCompleted: true),
+        Workout(name: "Calf raises", sets: 2, reps: 15, weight: 150, workoutDate: Date.yesterday, isCompleted: true)
     ]
     
     @Published var currentWeek: [Date] = []
     @Published var currentDay: Date = Date()
     @Published var filteredWorkouts: [Workout]?
+    
     
     init() {
         retrieveCurrentWeek()
@@ -82,3 +90,22 @@ final class TodayViewModel: ObservableObject {
 }
 
 
+extension Date {
+    static var yesterday: Date { return Date().dayBefore }
+    static var tomorrow:  Date { return Date().dayAfter }
+    var dayBefore: Date {
+        return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
+    }
+    var dayAfter: Date {
+        return Calendar.current.date(byAdding: .day, value: 1, to: noon)!
+    }
+    var noon: Date {
+        return Calendar.current.date(bySettingHour: 12, minute: 0, second: 0, of: self)!
+    }
+    var month: Int {
+        return Calendar.current.component(.month,  from: self)
+    }
+    var isLastDayOfMonth: Bool {
+        return dayAfter.month != month
+    }
+}

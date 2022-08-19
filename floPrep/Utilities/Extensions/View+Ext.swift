@@ -8,6 +8,7 @@
 import SwiftUI
 
 extension View {
+    
     func hLeading() -> some View {
         self
             .frame(maxWidth: .infinity, alignment: .leading)

@@ -18,10 +18,7 @@ struct ProgramView: View {
             Text("Programs")
             TextField("Program name...", text: $programName)
                 .frame(width: 300 , height: 100)
-            
-            //            Text("No programs created. Type in the field above to add one!")
-            //                .font(.system(size: 16))
-            //                .fontWeight(.light)
+
             List {
                 ForEach($gymFloContext.programs) { $program in
                     NavigationLink(destination: EditProgramView(program: $program)) {
@@ -50,3 +47,7 @@ struct ProgramView_Previews: PreviewProvider {
     }
 }
 
+
+//            Text("No programs created. Type in the field above to add one!")
+//                .font(.system(size: 16))
+//                .fontWeight(.light)
