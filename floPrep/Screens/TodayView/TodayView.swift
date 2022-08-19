@@ -96,7 +96,7 @@ struct TodayView: View {
                         .font(.title.bold())
                     
                     ForEach(workouts) { workout in
-                        WorkoutCell(workout: workout)
+                        DailyWorkoutCell(workout: workout)
                     }
                 }
             }
@@ -110,7 +110,7 @@ struct TodayView: View {
     }
     
     
-    func WorkoutCell(workout: Workout) -> some View {
+    func DailyWorkoutCell(workout: Workout) -> some View {
         
         HStack(alignment: .top, spacing: 30) {
             VStack(spacing: 10) {

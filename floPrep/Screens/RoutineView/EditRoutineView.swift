@@ -42,43 +42,6 @@ struct EditRoutineView: View {
 }
 
 
-struct TrainingButton: View {
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .frame(height: 64)
-                .foregroundColor(.brandSecondary)
-            
-            HStack(spacing: 12) {
-                NavigationLink(destination:TodayView()) {
-                    PlusButton()
-                    Text("Start training")
-                        .font(.title2)
-                }
-            }
-        }
-        .frame(width: 264)
-    }
-}
-
-struct NewRoutineButton: View {
-    
-    var body: some View {
-        ZStack {
-            RoundedRectangle(cornerRadius: 12, style: .continuous)
-                .frame(height: 64)
-                .foregroundColor(.brandSecondary)
-            HStack(spacing: 12) {
-                PlusButton()
-                Text("New Routine")
-                    .font(.title2)
-            }
-        }
-        .frame(width: 264)
-    }
-}
-
 //struct NewRoutineView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        EditRoutineView(routine: <#Binding<Routine>#>)
