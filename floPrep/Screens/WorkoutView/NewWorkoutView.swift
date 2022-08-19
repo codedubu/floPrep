@@ -9,26 +9,44 @@ import SwiftUI
 
 struct NewWorkoutView: View {
     
-//    @Binding var workouts: [Workout]
-    @State var workoutName = ""
+    let onSave: (Workout) -> Void
+    @Environment(\.dismiss) private var dismiss
+    
+    @State private var workout = Workout(name: "", sets: 0, reps: 0)
     
     var body: some View {
-            VStack {
-                HStack {
-                    Text("Edit Workout")
-                        .font(.largeTitle)
-                }
+        VStack {
+            Text("Create Workout")
+                .font(.largeTitle)
             
-            TextField("Workout name...", text: $workoutName )
-                .frame(width: 300 , height: 100)
-
-            PlusButton()
+            HStack {
+                TextField("Workout name...", text: $workout.name )
+                    .frame(width: 224 , height: 100)
+                
+                TextField("Sets", value: $workout.sets, format: .number)
+                TextField("Reps", value: $workout.reps, format: .number)
             }
+            .padding(.horizontal, 22)
+            
+            Button {
+                save()
+            } label: {
+                PlusButton()
+            }
+        }
     }
 }
 
-struct EditWorkoutView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewWorkoutView()
+extension NewWorkoutView {
+    
+    private func save() {
+        onSave(workout)
+        dismiss()
     }
 }
+//
+//struct NewWorkoutView_Previews: PreviewProvider {
+//    static var previews: some View {
+////        NewWorkoutView()
+//    }
+//}

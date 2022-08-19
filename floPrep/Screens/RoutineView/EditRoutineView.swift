@@ -25,11 +25,22 @@ struct EditRoutineView: View {
         Text("Workouts")
             .font(.title2.bold())
         
-        WorkoutView()
-        PlusDismissButton()
+        WorkoutView(workouts: $routine.workouts)
+        
+        NavigationLink {
+            NewWorkoutView(onSave: onSave)
+        } label: {
+            PlusButton()
+        }
+        
         TrainingButton()
     }
+    
+    private func onSave(_ workout: Workout) {
+        routine.workouts.append(workout)
+    }
 }
+
 
 struct TrainingButton: View {
     
@@ -41,7 +52,7 @@ struct TrainingButton: View {
             
             HStack(spacing: 12) {
                 NavigationLink(destination:TodayView()) {
-                    PlusDismissButton()
+                    PlusButton()
                     Text("Start training")
                         .font(.title2)
                 }
@@ -59,7 +70,7 @@ struct NewRoutineButton: View {
                 .frame(height: 64)
                 .foregroundColor(.brandSecondary)
             HStack(spacing: 12) {
-                PlusDismissButton()
+                PlusButton()
                 Text("New Routine")
                     .font(.title2)
             }

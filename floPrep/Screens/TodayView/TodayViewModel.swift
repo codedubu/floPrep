@@ -17,8 +17,6 @@ final class TodayViewModel: ObservableObject {
         Workout(name: "Lat Pulldown", sets: 3, reps: 8, weight: 80, workoutDate: Date(), isCompleted: false),
         Workout(name: "Bicep Curls", sets: 2, reps: 10, weight: 30, workoutDate: Date(), isCompleted: false),
         Workout(name: "Ab Work", sets: 2, reps: 15, weight: 0, workoutDate: Date(), isCompleted: false)
-        
-
     ]
     
     @Published var currentWeek: [Date] = []

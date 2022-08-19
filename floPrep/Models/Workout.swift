@@ -16,7 +16,7 @@ struct Workout: Identifiable, Codable, Equatable {
     var workoutDate: Date
     var isCompleted: Bool = false
     
-    init(name: String, sets: Int, reps: Int, weight: Int, workoutDate: Date = Date(), isCompleted: Bool = false) {
+    init(name: String, sets: Int, reps: Int, weight: Int? = nil, workoutDate: Date = Date(), isCompleted: Bool = false) {
         self.name   = name
         self.sets   = sets
         self.reps   = reps
