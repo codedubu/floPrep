@@ -9,7 +9,6 @@ import SwiftUI
 
 struct EditRoutineView: View {
     @Binding var routine: Routine
-    @State var routineName = ""
     
     var body: some View {
         VStack {
@@ -34,6 +33,7 @@ struct EditRoutineView: View {
         }
         
         TrainingButton()
+            .disabled(routine.workouts.isEmpty || routine.name.isEmpty)
     }
     
     private func onSave(_ workout: Workout) {
