@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RoutineView: View {
     @Binding var routines: [Routine]
+    @State private var showingSheet = false
     
     var body: some View {
         Text("No routines created. Type in the field above to add one!")
@@ -18,9 +19,13 @@ struct RoutineView: View {
         
         List {
             ForEach($routines) { $routine in
-                NavigationLink(destination: EditRoutineView(routine: $routine)) {
-                    RoutineCell(routine: routine, height: 150)
-                }
+                RoutineCell(routine: routine, height: 150)
+                    .onTapGesture {
+                        showingSheet.toggle()
+                    }
+                    .sheet(isPresented: $showingSheet) {
+                        EditRoutineView(routine: $routine)
+                    }
             }
             .onDelete(perform: deleteRoutine)
         }
@@ -34,9 +39,12 @@ extension RoutineView {
     }
 }
 
-//struct RoutineView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RoutineView()
-//    }
-//}
+struct RoutineView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            RoutineView(routines: .constant([Routine(name: "A Day"), Routine(name: "B Day")]))
+            RoutineView(routines: .constant([]))
+        }
+    }
+}
 

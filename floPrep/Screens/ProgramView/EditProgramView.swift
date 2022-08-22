@@ -50,11 +50,8 @@ extension EditProgramView {
     }
 }
 
-//
-//struct EditProgramView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditProgramView(program: )
-//    }
-//}
-
-
+struct EditProgramView_Previews: PreviewProvider {
+    static var previews: some View {
+        EditProgramView(program: .constant(Program(name: "Fierce Five")))
+    }
+}

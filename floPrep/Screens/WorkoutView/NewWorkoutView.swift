@@ -45,7 +45,7 @@ extension NewWorkoutView {
         dismiss()
     }
 }
-//
+
 //struct NewWorkoutView_Previews: PreviewProvider {
 //    static var previews: some View {
 ////        NewWorkoutView()

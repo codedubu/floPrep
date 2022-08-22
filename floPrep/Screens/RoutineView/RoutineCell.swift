@@ -29,8 +29,8 @@ struct RoutineCell: View {
     }
 }
 
-//struct RoutineCell_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RoutineCell()
-//    }
-//}
+struct RoutineCell_Previews: PreviewProvider {
+    static var previews: some View {
+        RoutineCell(routine: Routine(name: "A Day"), height: 160)
+    }
+}

@@ -19,30 +19,37 @@ struct EditRoutineView: View {
             HStack {
                 Text("Edit Routine")
                     .font(.largeTitle)
+                    .frame(maxWidth: .infinity, alignment: .center)
+                    .offset(x: 40)
+                
                 Button {
-                   dismiss()
+                    dismiss()
                 } label: {
                     XDismissButton()
                 }
-
+                .frame(alignment: .trailing)
+                .padding(.trailing, 22)
+                
             }
-        }
-        
-        TextField("Routine name...", text: $routine.name )
-            .frame(width: 300 , height: 100)
-        
-        Text("Workouts")
-            .font(.title2.bold())
-        
-        WorkoutView(workouts: $routine.workouts)
-        
-        Button {
-            showingSheet.toggle()
-        } label: {
-            PlusButton()
-        }
-        .sheet(isPresented: $showingSheet) {
-            NewWorkoutView(onSave: onSave)
+            
+            TextField("Routine name...", text: $routine.name )
+                .frame(width: 300 , height: 100)
+                .font(.title.bold())
+                
+            
+            Text("Workouts")
+                .font(.title2.bold())
+            
+            WorkoutView(workouts: $routine.workouts)
+            
+            Button {
+                showingSheet.toggle()
+            } label: {
+                PlusButton()
+            }
+            .sheet(isPresented: $showingSheet) {
+                NewWorkoutView(onSave: onSave)
+            }
         }
     }
 }
@@ -54,8 +61,11 @@ extension EditRoutineView {
     }
 }
 
-//struct NewRoutineView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        EditRoutineView(routine: <#Binding<Routine>#>)
-//    }
-//}
+struct EditRoutineView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            EditRoutineView(routine: .constant(Routine(name: "A Day", workouts: [Workout(name: "Bench", sets: 3, reps: 5)])))
+            EditRoutineView(routine: .constant(Routine(name: "A Day")))
+        }
+    }
+}

@@ -27,13 +27,13 @@ struct WorkoutView: View {
     }
 }
 
-//struct WorkoutView_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//        Group {
-//            WorkoutView()
-//            WorkoutView()
-//                .preferredColorScheme(.dark)
-//        }
-//    }
-//}
+struct WorkoutView_Previews: PreviewProvider {
+
+    static var previews: some View {
+        Group {
+            WorkoutView(workouts: .constant([Workout(name: "Bench", sets: 3, reps: 5), Workout(name: "Squat", sets: 3, reps: 5)]))
+            WorkoutView(workouts: .constant([]))
+                .preferredColorScheme(.dark)
+        }
+    }
+}
