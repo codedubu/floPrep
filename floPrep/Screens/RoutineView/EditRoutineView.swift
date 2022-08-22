@@ -10,11 +10,9 @@ import SwiftUI
 struct EditRoutineView: View {
     @Environment(\.dismiss) private var dismiss
     @Binding var routine: Routine
-    
-    @State private var showingSheet = false
-    
-    var body: some View {
         
+    var body: some View {
+                
         VStack {
             HStack {
                 Text("Edit Routine")
@@ -31,25 +29,19 @@ struct EditRoutineView: View {
                 .padding(.trailing, 22)
                 
             }
+            .padding(.top, 22)
             
-            TextField("Routine name...", text: $routine.name )
-                .frame(width: 300 , height: 100)
-                .font(.title.bold())
-                
+                TextField("Routine name...", text: $routine.name )
+                    .frame(width: 300 , height: 100)
+                    .font(.title.bold())
+            
             
             Text("Workouts")
                 .font(.title2.bold())
             
             WorkoutView(workouts: $routine.workouts)
+            NewWorkoutView(onSave: onSave)
             
-            Button {
-                showingSheet.toggle()
-            } label: {
-                PlusButton()
-            }
-            .sheet(isPresented: $showingSheet) {
-                NewWorkoutView(onSave: onSave)
-            }
         }
     }
 }

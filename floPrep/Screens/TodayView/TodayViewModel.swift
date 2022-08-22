@@ -30,7 +30,6 @@ final class TodayViewModel: ObservableObject {
     @Published var currentDay: Date = Date()
     @Published var filteredWorkouts: [Workout]?
     
-    
     init() {
         retrieveCurrentWeek()
         filterTodayWorkouts()
@@ -91,8 +90,10 @@ final class TodayViewModel: ObservableObject {
 
 
 extension Date {
+    
     static var yesterday: Date { return Date().dayBefore }
     static var tomorrow:  Date { return Date().dayAfter }
+    
     var dayBefore: Date {
         return Calendar.current.date(byAdding: .day, value: -1, to: noon)!
     }

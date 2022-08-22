@@ -11,25 +11,25 @@ struct NewWorkoutView: View {
     
     let onSave: (Workout) -> Void
     
-    @Environment(\.dismiss) private var dismiss
     @State private var workout = Workout(name: "", sets: 0, reps: 0)
     
     var body: some View {
         VStack {
-            Text("Create Workout")
-                .font(.largeTitle)
-            
             HStack {
                 TextField("Workout name...", text: $workout.name )
-                    .frame(width: 224 , height: 100)
+                    .frame(width: 186 , height: 100)
                 
-                TextField("Sets", value: $workout.sets, format: .number)
-                TextField("Reps", value: $workout.reps, format: .number)
+                Text("sets:")
+                TextField("sets", value: $workout.sets, format: .number)
+                
+                Text("reps:")
+                TextField("reps", value: $workout.reps, format: .number)
             }
             .padding(.horizontal, 22)
             
             Button {
                 save()
+                workout = Workout(name: "", sets: 0, reps: 0)
             } label: {
                 PlusButton()
             }
@@ -42,7 +42,6 @@ extension NewWorkoutView {
     
     private func save() {
         onSave(workout)
-        dismiss()
     }
 }
 

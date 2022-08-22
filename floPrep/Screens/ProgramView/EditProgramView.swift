@@ -9,9 +9,8 @@ import SwiftUI
 
 struct EditProgramView: View {
     @Binding var program: Program
-    
-    @State var routineName = ""
-    
+    @State private var routineName = ""
+        
     var body: some View {
         VStack {
             HStack {
@@ -22,16 +21,16 @@ struct EditProgramView: View {
             TextField(program.name, text: $program.name)
                 .frame(width: 300 , height: 100)
             
-            Form {
-                TextField("Enter routine...", text: $routineName )
-            }
-            .frame(height: 80)
+            TextField("Routine Name...", text: $routineName)
             
             RoutineView(routines: $program.routines)
             
-            Button("Save") {
-                newRoutine()
-            }.disabled(routineName.isEmpty)
+            Button {
+                createRoutine(with: routineName)
+                routineName = ""
+            } label: {
+                Text("Save Routine")
+            }
             
             NavigationLink(destination: TodayView(routines: $program.routines)) {
                 TrainingButton()
@@ -43,10 +42,9 @@ struct EditProgramView: View {
 
 extension EditProgramView {
     
-    func newRoutine() {
-        let newRoutine = Routine(name: routineName)
+    func createRoutine(with name: String) {
+        let newRoutine = Routine(name: name)
         program.routines.append(newRoutine)
-        routineName = ""
     }
 }
 
