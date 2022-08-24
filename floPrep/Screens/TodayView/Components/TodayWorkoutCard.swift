@@ -40,8 +40,6 @@ struct WorkoutCardView: View {
     }
 }
 
-
-
 struct WorkoutHeader: View {
     
     @Environment(\.editMode) var editingThang

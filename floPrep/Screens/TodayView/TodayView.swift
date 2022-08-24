@@ -9,21 +9,17 @@ import SwiftUI
 
 struct TodayView: View {
     
-    @Namespace var animation
-    
     @StateObject var viewModel = TodayViewModel()
     @Binding var routines: [Routine]
+    @Namespace var animation
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-            
             LazyVStack(spacing: 15, pinnedViews: [.sectionHeaders]) {
                 
                 Section {
                     ScrollView(.horizontal, showsIndicators: false) {
-                        
                         HStack(spacing: 10) {
-                            
                             ForEach(viewModel.currentWeek, id: \.self) { day in
                                 
                                 VStack(spacing: 10) {
@@ -49,8 +45,7 @@ struct TodayView: View {
                                                 .fill(Color.brandPrimary)
                                                 .matchedGeometryEffect(id: "CURRENTDAY", in: animation)
                                         }
-                                    }
-                                )
+                                    })
                                 .contentShape(RoundedRectangle(cornerRadius: 14))
                                 .onTapGesture {
                                     withAnimation {
@@ -68,7 +63,6 @@ struct TodayView: View {
                 }
             }
         }
-        
         .ignoresSafeArea(.container, edges: .top)
     }
     
