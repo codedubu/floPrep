@@ -10,7 +10,7 @@ import SwiftUI
 struct EditProgramView: View {
     @Binding var program: Program
     @State private var routineName = ""
-        
+    
     var body: some View {
         VStack {
             HStack {
@@ -19,9 +19,13 @@ struct EditProgramView: View {
             }
             
             TextField(program.name, text: $program.name)
-                .frame(width: 300 , height: 100)
+                .font(.title)
+                .padding(.horizontal, 44)
+                .frame(maxWidth: .infinity, alignment: .leading)
             
             TextField("Routine Name...", text: $routineName)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 44)
             
             RoutineView(routines: $program.routines)
             

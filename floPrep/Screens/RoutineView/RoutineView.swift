@@ -13,16 +13,23 @@ struct RoutineView: View {
     var body: some View {
         List {
             ForEach($routines) { $routine in
-                NavigationLink(destination: EditRoutineView(routine: $routine)) {
+                ZStack {
                     RoutineCell(routine: routine, height: 150)
+                    NavigationLink(destination: EditRoutineView(routine: $routine)) {
+                        EmptyView()
+                    }
+                    .frame(width:0)
+                    .opacity(0)
                 }
             }
             .onDelete(perform: deleteRoutine)
+            .listRowSeparator(.hidden)
         }
+        .listStyle(.plain)
         .disabled(routines.isEmpty)
         .overlay {
             if routines.isEmpty {
-             EmptyStateView(message: "No routines created. Type in the field below to add one!")
+                EmptyStateView(message: "No routines created. Type in the field below to add one!")
             }
         }
     }

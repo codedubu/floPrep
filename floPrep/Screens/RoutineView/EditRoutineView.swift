@@ -10,9 +10,9 @@ import SwiftUI
 struct EditRoutineView: View {
     @Environment(\.dismiss) private var dismiss
     @Binding var routine: Routine
-        
+    
     var body: some View {
-                
+        
         VStack {
             HStack {
                 Text("Edit Routine")
@@ -31,17 +31,15 @@ struct EditRoutineView: View {
             }
             .padding(.top, 22)
             
-                TextField("Routine name...", text: $routine.name )
-                    .frame(width: 300 , height: 100)
-                    .font(.title.bold())
-            
+            TextField("Routine name...", text: $routine.name )
+                .frame(width: 300 , height: 100)
+                .font(.title.bold())
             
             Text("Workouts")
                 .font(.title2.bold())
             
-            WorkoutView(workouts: $routine.workouts)
+            WorkoutView(workoutTemplates: $routine.workoutTemplates)
             NewWorkoutView(onSave: onSave)
-            
         }
     }
 }
@@ -49,14 +47,14 @@ struct EditRoutineView: View {
 extension EditRoutineView {
     
     private func onSave(_ workout: Workout) {
-        routine.workouts.append(workout)
+        routine.workoutTemplates.append(workout)
     }
 }
 
 struct EditRoutineView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            EditRoutineView(routine: .constant(Routine(name: "A Day", workouts: [Workout(name: "Bench", sets: 3, reps: 5)])))
+            EditRoutineView(routine: .constant(Routine(name: "A Day", workoutTemplates: [Workout(name: "Bench", sets: 3, reps: 5)])))
             EditRoutineView(routine: .constant(Routine(name: "A Day")))
         }
     }

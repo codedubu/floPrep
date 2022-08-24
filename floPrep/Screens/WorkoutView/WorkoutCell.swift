@@ -23,7 +23,7 @@ struct WorkoutCell: View {
                             .font(.title3)
                             .foregroundStyle(.black)
                             .frame(width: 32)
-                            .multilineTextAlignment(.center)
+                            .multilineTextAlignment(.leading)
                         Text("sets")
                             .font(.title3)
                             .foregroundStyle(.black)
@@ -35,11 +35,11 @@ struct WorkoutCell: View {
                             .font(.title3)
                             .foregroundStyle(.black)
                             .frame(width: 32)
-                            .multilineTextAlignment(.center)
+                            .multilineTextAlignment(.leading)
                         Text("reps")
                             .font(.title3)
                             .foregroundStyle(.black)
-                        
+                        Spacer()
                     }
                     .hLeading()
                 }

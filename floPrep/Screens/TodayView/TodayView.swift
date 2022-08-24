@@ -16,7 +16,7 @@ struct TodayView: View {
     
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
-                        
+            
             LazyVStack(spacing: 15, pinnedViews: [.sectionHeaders]) {
                 
                 Section {
@@ -64,7 +64,7 @@ struct TodayView: View {
                     WorkoutsView()
                     
                 } header: {
-                    HeaderView()
+                    TodayViewHeader()
                 }
             }
         }
@@ -101,7 +101,7 @@ struct TodayView: View {
                         .font(.title.bold())
                     
                     ForEach(workouts) { workout in
-                        DailyWorkoutCell(workout: workout)
+                        TodayWorkoutCell(workout: workout)
                     }
                 }
             }
@@ -113,116 +113,9 @@ struct TodayView: View {
         .padding(.top)
         
     }
-    
-    
-    func DailyWorkoutCell(workout: Workout) -> some View {
-        
-        HStack(alignment: .top, spacing: 30) {
-            VStack(spacing: 10) {
-                Circle()
-                    .fill(workout.isCompleted ? Color.brandSecondary : .white)
-                    .frame(width:15, height: 15)
-                    .background(
-                        Circle()
-                            .stroke(.black, lineWidth: 1)
-                            .padding(-3)
-                    )
-                
-                Rectangle()
-                    .fill(Color.brandPrimary)
-                    .frame(width: 3)
-            }
-            
-            VStack {
-                
-                HStack(alignment: .top, spacing: 10) {
-                    
-                    
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text(workout.name)
-                            .font(.title2.bold())
-                        HStack {
-                            Text("145 lbs")
-                                .font(.title3)
-                                .foregroundStyle(.secondary)
-                                .padding(.trailing, 28)
-                            Text("\(workout.sets) sets")
-                                .font(.title3)
-                                .foregroundStyle(.secondary)
-                            Text("x")
-                                .font(.title3)
-                                .foregroundStyle(.secondary)
-                            Text("\(workout.reps) reps")
-                                .font(.title3)
-                                .foregroundStyle(.secondary)
-                        }
-                        .hLeading()
-                    }
-                    
-                    
-                    Button {
-                        // workout.isCompleted.toggle()
-                        
-                    } label: {
-                        Image(systemName: workout.isCompleted ? "checkmark" : "pencil")
-                            .padding(10)
-                            .foregroundColor(.white)
-                            .background(Color.brandSecondary, in: RoundedRectangle(cornerRadius: 12))
-                    }
-                    .padding(.top, 10)
-                    
-                }
-                
-            }
-            .foregroundColor(workout.isCompleted ?  .white : .black)
-            .padding()
-            .background(workout.isCompleted ? Color.brandPrimary : .white)
-            .hLeading()
-            .cornerRadius(12)
-            
-        }
-        .hLeading()
-    }
-    
-    
-    func HeaderView() -> some View {
-        HStack(spacing: 10) {
-            
-            Button {
-                print("list")
-            } label: {
-                Image(systemName: "list.bullet")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 28 , height:  28)
-                    .tint(.brandPrimary)
-            }
-            
-            VStack(alignment: .trailing, spacing: 10) {
-                Text("Today")
-                    .font(.largeTitle.bold())
-                
-                Text(Date().formatted(date: .abbreviated, time: .omitted))
-                    .foregroundColor(.gray)
-                
-            }
-            .hCenter()
-            
-            Button {
-                print("gear")
-            } label: {
-                Image(systemName: "gearshape.fill")
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 34 , height:  34)
-                    .tint(.brandPrimary)
-            }
-        }
-        .padding()
-        .padding(.top, getSafeArea().top)
-        .background(.white)
-    }
 }
+
+
 
 //struct TodayView_Previews: PreviewProvider {
 //    static var previews: some View {

@@ -10,10 +10,12 @@ import Foundation
 struct Routine: Identifiable, Codable, Equatable {
     var id = UUID()
     var name: String
-    var workouts: [Workout]
+    var workoutTemplates: [Workout]
+    var trackedWorkouts: [TrackedWorkout]
     
-    init(name: String, workouts: [Workout] = []) {
-        self.name       = name
-        self.workouts   = workouts
+    init(name: String, workoutTemplates: [Workout] = [], trackedWorkouts: [TrackedWorkout] = []) {
+        self.name               = name
+        self.workoutTemplates   = workoutTemplates
+        self.trackedWorkouts    = trackedWorkouts
     }
 }

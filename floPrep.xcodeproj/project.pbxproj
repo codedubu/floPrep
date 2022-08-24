@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		7903387C28B681F7007FF530 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903387B28B681F7007FF530 /* EmptyStateView.swift */; };
+		7903388028B683F9007FF530 /* TodayViewHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903387F28B683F9007FF530 /* TodayViewHeader.swift */; };
+		7903388228B68438007FF530 /* TodayWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903388128B68438007FF530 /* TodayWorkoutCell.swift */; };
+		7903388728B689B4007FF530 /* TrackedWorkout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903388628B689B4007FF530 /* TrackedWorkout.swift */; };
 		793C0D1B28AAC0F300BF7EDC /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C0D1A28AAC0F300BF7EDC /* TodayViewModel.swift */; };
 		793C0D1D28AAF18700BF7EDC /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C0D1C28AAF18700BF7EDC /* View+Ext.swift */; };
 		79809BC828B01C9700D373F1 /* TrainingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79809BC728B01C9700D373F1 /* TrainingButton.swift */; };
@@ -36,6 +39,9 @@
 
 /* Begin PBXFileReference section */
 		7903387B28B681F7007FF530 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
+		7903387F28B683F9007FF530 /* TodayViewHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewHeader.swift; sourceTree = "<group>"; };
+		7903388128B68438007FF530 /* TodayWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWorkoutCell.swift; sourceTree = "<group>"; };
+		7903388628B689B4007FF530 /* TrackedWorkout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackedWorkout.swift; sourceTree = "<group>"; };
 		793C0D1A28AAC0F300BF7EDC /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		793C0D1C28AAF18700BF7EDC /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		79809BC728B01C9700D373F1 /* TrainingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingButton.swift; sourceTree = "<group>"; };
@@ -74,6 +80,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7903388328B684FC007FF530 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				7903387F28B683F9007FF530 /* TodayViewHeader.swift */,
+				7903388128B68438007FF530 /* TodayWorkoutCell.swift */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
 		79809BCD28B04B5600D373F1 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,6 +131,7 @@
 			children = (
 				793C0D1A28AAC0F300BF7EDC /* TodayViewModel.swift */,
 				79A1D07028A9A0A700ABB225 /* TodayView.swift */,
+				7903388328B684FC007FF530 /* Components */,
 			);
 			path = TodayView;
 			sourceTree = "<group>";
@@ -201,8 +217,9 @@
 			isa = PBXGroup;
 			children = (
 				79E2A94428ADC0E90001BC6B /* Program.swift */,
-				79CC17A628A44A260051C6B9 /* Workout.swift */,
 				79CC17A428A44A210051C6B9 /* Routine.swift */,
+				79CC17A628A44A260051C6B9 /* Workout.swift */,
+				7903388628B689B4007FF530 /* TrackedWorkout.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -300,8 +317,11 @@
 				79BAEE8F28AEDDC10032949F /* NewWorkoutView.swift in Sources */,
 				7903387C28B681F7007FF530 /* EmptyStateView.swift in Sources */,
 				79CC179528A449F10051C6B9 /* floPrepApp.swift in Sources */,
+				7903388728B689B4007FF530 /* TrackedWorkout.swift in Sources */,
 				79B1D05628B0023C00C37BB7 /* WorkoutCell.swift in Sources */,
+				7903388028B683F9007FF530 /* TodayViewHeader.swift in Sources */,
 				79809BCA28B01CA800D373F1 /* NewRoutineButton.swift in Sources */,
+				7903388228B68438007FF530 /* TodayWorkoutCell.swift in Sources */,
 				79CC17A528A44A210051C6B9 /* Routine.swift in Sources */,
 				79B1D05828B0024D00C37BB7 /* RoutineCell.swift in Sources */,
 				79AFB32A28B04BEA00508AAE /* Color+Ext.swift in Sources */,

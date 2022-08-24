@@ -18,15 +18,22 @@ struct ProgramView: View {
             Text("Programs")
             TextField("Program name...", text: $programName)
                 .frame(width: 300 , height: 100)
-
+            
             List {
                 ForEach($gymFloContext.programs) { $program in
-                    NavigationLink(destination: EditProgramView(program: $program)) {
+                    ZStack {
                         ProgramCell(program: program)
+                        NavigationLink(destination: EditProgramView(program: $program)) {
+                            EmptyView()
+                        }
+                        .frame(width:0)
+                        .opacity(0)
                     }
                 }
                 .onDelete(perform: gymFloContext.deleteProgram)
+                .listRowSeparator(.hidden)
             }
+            .listStyle(.plain)
             
             Button("Save") {
                 gymFloContext.createProgram(with: programName)
