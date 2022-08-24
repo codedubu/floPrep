@@ -15,7 +15,7 @@ struct floPrepApp: App {
         WindowGroup {
             NavigationView {
                 ProgramView(gymFloContext: programContext)
-//                TodayView()
+//                TodayView(routines: .constant([Routine(name: "A Day")]))
             }
             .navigationViewStyle(.stack)
         }

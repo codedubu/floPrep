@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7903387C28B681F7007FF530 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7903387B28B681F7007FF530 /* EmptyStateView.swift */; };
 		793C0D1B28AAC0F300BF7EDC /* TodayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C0D1A28AAC0F300BF7EDC /* TodayViewModel.swift */; };
 		793C0D1D28AAF18700BF7EDC /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 793C0D1C28AAF18700BF7EDC /* View+Ext.swift */; };
 		79809BC828B01C9700D373F1 /* TrainingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79809BC728B01C9700D373F1 /* TrainingButton.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7903387B28B681F7007FF530 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
 		793C0D1A28AAC0F300BF7EDC /* TodayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewModel.swift; sourceTree = "<group>"; };
 		793C0D1C28AAF18700BF7EDC /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		79809BC728B01C9700D373F1 /* TrainingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrainingButton.swift; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		79A1D07628A9A6EA00ABB225 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				7903387B28B681F7007FF530 /* EmptyStateView.swift */,
 				79A1D07B28A9A7FE00ABB225 /* Buttons */,
 			);
 			path = Views;
@@ -295,6 +298,7 @@
 			files = (
 				79E2A94528ADC0E90001BC6B /* Program.swift in Sources */,
 				79BAEE8F28AEDDC10032949F /* NewWorkoutView.swift in Sources */,
+				7903387C28B681F7007FF530 /* EmptyStateView.swift in Sources */,
 				79CC179528A449F10051C6B9 /* floPrepApp.swift in Sources */,
 				79B1D05628B0023C00C37BB7 /* WorkoutCell.swift in Sources */,
 				79809BCA28B01CA800D373F1 /* NewRoutineButton.swift in Sources */,
