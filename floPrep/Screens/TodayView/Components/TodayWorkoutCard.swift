@@ -9,18 +9,20 @@ import SwiftUI
 
 struct WorkoutCardView: View {
     
+    @Binding var dailyWorkout: DailyWorkout
+    
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 25, style: .continuous)
                 .fill(.white)
                 .shadow(radius: 10)
             VStack {
-                WorkoutHeader()
+                WorkoutHeader(dailyWorkout: $dailyWorkout)
                 List {
-                    ForEach(0..<3) { _ in
-                        TodayWorkoutSetCell(setNumber: 1)
+                    ForEach($dailyWorkout.workoutSets) { $singleSet in
+                        let setNumber = dailyWorkout.workoutSets.firstIndex(where: { $0.id == singleSet.id})!
+                        TodayWorkoutSetCell(singleSet: $singleSet, setNumber: "\(setNumber + 1)")
                     }
-//                    .onDelete(perform: appContext.deleteWorkout)
                     .listRowSeparator(.hidden)
                     .padding(.horizontal, 22)
                 }
@@ -38,12 +40,6 @@ struct WorkoutCardView: View {
     }
 }
 
-struct WorkoutCardView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        WorkoutCardView()
-    }
-}
 
 
 struct WorkoutHeader: View {
@@ -51,9 +47,11 @@ struct WorkoutHeader: View {
     @Environment(\.editMode) var editingThang
     @State var isEditing = false
     
+    @Binding var dailyWorkout: DailyWorkout
+    
     var body: some View {
         HStack {
-            Text("Bench")
+            Text(dailyWorkout.name)
                 .font(.title.bold())
             Spacer()
             Button {
@@ -73,7 +71,6 @@ struct WorkoutHeader: View {
     }
 }
 
-
 struct DotEditButton: View {
     
     var body: some View {
@@ -85,18 +82,19 @@ struct DotEditButton: View {
     }
 }
 
-
 struct TodayWorkoutSetCell: View {
     
-    var setNumber: Int
+    @Binding var singleSet: Workout
+    var setNumber: String
     
     var body: some View {
+        
         HStack(spacing: 54) {
-            Text("\(setNumber)")
+            Text(setNumber)
                 .font(.title2)
                 .lineLimit(1)
                 .minimumScaleFactor(0.65)
-            Text("145 lbs")
+            TextField("Weight..", value: $singleSet.weight, format: .number)
                 .font(.title2)
                 .lineLimit(1)
                 .minimumScaleFactor(0.65)
@@ -104,7 +102,7 @@ struct TodayWorkoutSetCell: View {
                 .font(.title2)
                 .lineLimit(1)
                 .minimumScaleFactor(0.65)
-            Text("5 reps")
+            TextField("reps", value: $singleSet.reps, format: .number)
                 .font(.title2)
                 .lineLimit(1)
                 .minimumScaleFactor(0.65)
@@ -112,17 +110,16 @@ struct TodayWorkoutSetCell: View {
     }
 }
 
-
 struct AddButton: View {
     var body: some View {
         ZStack {
             Circle()
                 .frame(width: 44, height: 44)
-                .foregroundColor(.indigo)
+                .foregroundColor(.brandPrimary)
             Image(systemName: "plus")
                 .resizable()
                 .frame(width: 22, height: 22)
-                .foregroundColor(.black)
+                .foregroundColor(.white)
         }
         .padding(.bottom, 8)
     }
@@ -139,3 +136,12 @@ struct Dot: View {
             .foregroundColor(.black)
     }
 }
+
+
+
+//struct WorkoutCardView_Previews: PreviewProvider {
+//
+//    static var previews: some View {
+//        WorkoutCardView()
+//    }
+//}

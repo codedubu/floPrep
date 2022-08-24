@@ -25,7 +25,7 @@ struct TodayView: View {
                         HStack(spacing: 10) {
                             
                             ForEach(viewModel.currentWeek, id: \.self) { day in
-                        
+                                
                                 VStack(spacing: 10) {
                                     Text(viewModel.extractDate(date: day, format: "dd"))
                                         .font(.system(size: 15))
@@ -90,27 +90,17 @@ struct TodayView: View {
                             ForEach($routines) { $routine in
                                 RoutineCell(routine: routine, height: 164, width: 164)
                                     .onTapGesture {
-                                        for template in routine.workoutTemplates {
-                                            var newDailyWorkout = DailyWorkout(name: template.name, date: viewModel.currentDay)
-                                            
-                                            for _ in 0..<template.sets {
-                                                let newWorkoutSet = Workout(name: template.name, sets: template.sets, reps: template.reps, weight: 0)
-                                                newDailyWorkout.workoutSets.append(newWorkoutSet)
-                                            }
-                                            
-                                            routine.dailyWorkouts.append(newDailyWorkout)
-                                        }
+                                        createDailyWorkouts(routine: &routine, templates: routine.workoutTemplates)
                                     }
                             }
                         }
                     }
                 } else {
                     
-                    Text("B Day")
-                        .font(.title.bold())
-                    
-                    ForEach(workouts) { workout in
-                        TodayWorkoutCell(workout: workout)
+                    ForEach($routines) { routine in
+                        ForEach(routine.dailyWorkouts) { dailyWorkout in
+                            WorkoutCardView(dailyWorkout: dailyWorkout)
+                        }
                     }
                 }
             }
@@ -121,6 +111,20 @@ struct TodayView: View {
         .padding()
         .padding(.top)
         
+    }
+    
+    
+    func createDailyWorkouts(routine: inout Routine, templates: [Workout]) {
+        for template in templates {
+            var newDailyWorkout = DailyWorkout(name: template.name, date: Date())
+            
+            for _ in 0..<template.sets {
+                let newWorkoutSet = Workout(name: template.name, sets: template.sets, reps: template.reps)
+                newDailyWorkout.workoutSets.append(newWorkoutSet)
+            }
+            
+            routine.dailyWorkouts.append(newDailyWorkout)
+        }
     }
 }
 
