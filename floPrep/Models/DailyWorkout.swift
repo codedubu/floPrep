@@ -7,13 +7,15 @@
 
 import Foundation
 
-struct TrackedWorkout: Identifiable, Codable, Equatable {
+struct DailyWorkout: Identifiable, Codable, Equatable {
     var id = UUID()
     var name: String
+    var date: Date
     var workoutSets: [Workout]
     
-    init(name: String, workoutSets: [Workout] = []) {
+    init(name: String, workoutSets: [Workout] = [], date: Date = Date()) {
         self.name           = name
         self.workoutSets    = workoutSets
+        self.date           = date
     }
 }

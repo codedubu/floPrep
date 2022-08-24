@@ -25,7 +25,7 @@ struct TodayView: View {
                         HStack(spacing: 10) {
                             
                             ForEach(viewModel.currentWeek, id: \.self) { day in
-                                
+                        
                                 VStack(spacing: 10) {
                                     Text(viewModel.extractDate(date: day, format: "dd"))
                                         .font(.system(size: 15))
@@ -87,12 +87,21 @@ struct TodayView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
                             
-                            ForEach(routines) { routine in
+                            ForEach($routines) { $routine in
                                 RoutineCell(routine: routine, height: 164, width: 164)
+                                    .onTapGesture {
+                                        for template in routine.workoutTemplates {
+                                            var newDailyWorkout = DailyWorkout(name: template.name, date: viewModel.currentDay)
+                                            
+                                            for _ in 0..<template.sets {
+                                                let newWorkoutSet = Workout(name: template.name, sets: template.sets, reps: template.reps, weight: 0)
+                                                newDailyWorkout.workoutSets.append(newWorkoutSet)
+                                            }
+                                            
+                                            routine.dailyWorkouts.append(newDailyWorkout)
+                                        }
+                                    }
                             }
-                        }
-                        .onTapGesture {
-                            // the above scroll view changes into a WorkoutsView??
                         }
                     }
                 } else {
@@ -114,8 +123,6 @@ struct TodayView: View {
         
     }
 }
-
-
 
 //struct TodayView_Previews: PreviewProvider {
 //    static var previews: some View {
