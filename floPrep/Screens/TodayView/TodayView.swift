@@ -89,8 +89,8 @@ struct TodayView: View {
                         }
                     }
                 } else {
-                    ForEach($program.trackedWorkouts) { $exercise in
-                            TodayWorkoutCardView(exercise: $exercise)
+                    ForEach($program.trackedWorkouts) { $flow in
+                            TodayWorkoutCardView(flow: $flow)
                     }
                 }
             }
@@ -105,14 +105,14 @@ struct TodayView: View {
     
     func createDailyWorkouts(routine: inout Routine, templates: [Workout]) {
         for template in templates {
-            var newDailyWorkout = Exercise(name: template.name, date: viewModel.currentDay)
+            var newFlow = Flow(name: template.name, date: viewModel.currentDay)
             
             for _ in 0..<template.sets {
                 let newWorkoutSet = Workout(name: template.name, sets: template.sets, reps: template.reps)
-                newDailyWorkout.sets.append(newWorkoutSet)
+                newFlow.sets.append(newWorkoutSet)
             }
             
-            program.trackedWorkouts.append(newDailyWorkout)
+            program.trackedWorkouts.append(newFlow)
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TodayWorkoutCardView: View {
     
-    @Binding var exercise: Exercise
+    @Binding var flow: Flow
     
     var body: some View {
         ZStack {
@@ -17,11 +17,11 @@ struct TodayWorkoutCardView: View {
                 .fill(.white)
                 .shadow(radius: 10)
             VStack {
-                WorkoutHeader(exercise: $exercise)
+                WorkoutHeader(flow: $flow)
                 List {
-                    ForEach($exercise.sets) { $singleSet in
+                    ForEach($flow.sets) { $singleSet in
                         
-                        let setIndex = exercise.sets.firstIndex(where: { $0.id == singleSet.id})!
+                        let setIndex = flow.sets.firstIndex(where: { $0.id == singleSet.id})!
                         
                         TodayWorkoutSetCell(singleSet: $singleSet, setNumber: "\(setIndex + 1)")
                             .swipeActions {
@@ -55,11 +55,11 @@ struct WorkoutHeader: View {
     @Environment(\.editMode) var editingThang
     @State var isEditing = false
     
-    @Binding var exercise: Exercise
+    @Binding var flow: Flow
     
     var body: some View {
         HStack {
-            Text(exercise.name)
+            Text(flow.name)
                 .font(.title.bold())
             Spacer()
             Button {
@@ -150,7 +150,7 @@ struct Dot: View {
 extension TodayWorkoutCardView {
     
     func deleteSingleSet(index: Int) {
-        exercise.sets.remove(at: index)
+        flow.sets.remove(at: index)
     }
 }
 

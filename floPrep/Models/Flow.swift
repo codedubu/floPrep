@@ -1,5 +1,5 @@
 //
-//  Exercise.swift
+//  Flow.swift
 //  floPrep
 //
 //  Created by River McCaine on 8/24/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Exercise: Identifiable, Codable, Equatable {
+struct Flow: Identifiable, Codable, Equatable {
     var id = UUID()
     var name: String
     var date: Date
