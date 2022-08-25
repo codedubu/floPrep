@@ -11,6 +11,7 @@ import Combine
 class gymFloContext: ObservableObject {
     @Published var programs: [Program] = []
     
+    
     private var cancellables: Set<AnyCancellable> = []
     
     init() {
@@ -56,11 +57,11 @@ extension gymFloContext {
         }
     }
     
-    
     func loadFromPersistenceStore() {
         do {
             let data = try Data(contentsOf: fileURL())
             let foundPrograms = try JSONDecoder().decode([Program].self, from: data)
+            
             programs = foundPrograms
         } catch {
             print(error)

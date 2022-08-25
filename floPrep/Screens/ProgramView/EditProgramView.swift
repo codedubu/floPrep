@@ -12,14 +12,9 @@ struct EditProgramView: View {
     @State private var routineName = ""
     
     var body: some View {
-        VStack {
-            HStack {
-                Text("Edit Program")
-                    .font(.largeTitle)
-            }
-            
+        VStack(spacing: 20) {
             TextField(program.name, text: $program.name)
-                .font(.title)
+                .font(.largeTitle)
                 .padding(.horizontal, 44)
                 .frame(maxWidth: .infinity, alignment: .leading)
             
@@ -41,6 +36,7 @@ struct EditProgramView: View {
             }
             .disabled(program.routines.isEmpty || program.name.isEmpty)
         }
+        .padding(.top, 22)
     }
 }
 

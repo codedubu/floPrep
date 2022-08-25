@@ -50,6 +50,7 @@ struct TodayView: View {
                                 .onTapGesture {
                                     withAnimation {
                                         viewModel.currentDay = day
+                                        print(day)
                                     }
                                 }
                             }
