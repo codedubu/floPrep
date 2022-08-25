@@ -10,20 +10,27 @@ import SwiftUI
 
 final class TodayViewModel: ObservableObject {
     
-    @Published var storedWorkouts = [
-        Workout(name: "Front Squat", sets: 3, reps: 5, weight: 185, workoutDate: Date(), isCompleted: true),
-        Workout(name: "Overhead Press", sets: 3, reps: 5, weight: 95, workoutDate: Date(), isCompleted: true),
-        Workout(name: "RDL", sets: 3, reps: 8, weight: 145, workoutDate: Date(), isCompleted: false),
-        Workout(name: "Lat Pulldown", sets: 3, reps: 8, weight: 80, workoutDate: Date(), isCompleted: false),
-        Workout(name: "Bicep Curls", sets: 2, reps: 10, weight: 30, workoutDate: Date(), isCompleted: false),
-        Workout(name: "Ab Work", sets: 2, reps: 15, weight: 0, workoutDate: Date(), isCompleted: false),
+    // a Program that has our DailyWorkouts stored.
         
-        Workout(name: "Squat", sets: 3, reps: 5, weight: 235, workoutDate: Date.yesterday, isCompleted: true),
-        Workout(name: "Bench", sets: 3, reps: 5, weight: 14, workoutDate: Date.yesterday, isCompleted: true),
-        Workout(name: "Pendlay Row", sets: 3, reps: 8, weight: 145, workoutDate: Date.yesterday, isCompleted: true),
-        Workout(name: "Face Pulls", sets: 3, reps: 8, weight: 80, workoutDate: Date.yesterday, isCompleted: true),
-        Workout(name: "Tricep Pulldown", sets: 2, reps: 10, weight: 90, workoutDate: Date.yesterday, isCompleted: true),
-        Workout(name: "Calf raises", sets: 2, reps: 15, weight: 150, workoutDate: Date.yesterday, isCompleted: true)
+    // program.trackedWorkouts
+    
+    // filter the days that match the thang
+    
+    
+    @Published var storedWorkouts = [
+        Workout(name: "Front Squat", sets: 3, reps: 5, weight: 185, workoutDate: Date()),
+        Workout(name: "Overhead Press", sets: 3, reps: 5, weight: 95, workoutDate: Date()),
+        Workout(name: "RDL", sets: 3, reps: 8, weight: 145, workoutDate: Date()),
+        Workout(name: "Lat Pulldown", sets: 3, reps: 8, weight: 80, workoutDate: Date()),
+        Workout(name: "Bicep Curls", sets: 2, reps: 10, weight: 30, workoutDate: Date()),
+        Workout(name: "Ab Work", sets: 2, reps: 15, weight: 0, workoutDate: Date()),
+
+        Workout(name: "Squat", sets: 3, reps: 5, weight: 235, workoutDate: Date.yesterday),
+        Workout(name: "Bench", sets: 3, reps: 5, weight: 14, workoutDate: Date.tomorrow),
+        Workout(name: "Pendlay Row", sets: 3, reps: 8, weight: 145, workoutDate: Date.yesterday),
+        Workout(name: "Face Pulls", sets: 3, reps: 8, weight: 80, workoutDate: Date.yesterday),
+        Workout(name: "Tricep Pulldown", sets: 2, reps: 10, weight: 90, workoutDate: Date.yesterday),
+        Workout(name: "Calf raises", sets: 2, reps: 15, weight: 150, workoutDate: Date.yesterday)
     ]
     
     @Published var currentWeek: [Date] = []
@@ -35,15 +42,15 @@ final class TodayViewModel: ObservableObject {
         filterTodayWorkouts()
     }
     
-    
+
     func filterTodayWorkouts() {
         DispatchQueue.global(qos: .userInteractive).async {
-            
+
             let calendar = Calendar.current
             let filtered = self.storedWorkouts.filter {
                 return calendar.isDate($0.workoutDate, inSameDayAs: self.currentDay)
             }
-            
+
             DispatchQueue.main.async {
                 withAnimation {
                     self.filteredWorkouts = filtered
@@ -51,7 +58,7 @@ final class TodayViewModel: ObservableObject {
             }
         }
     }
-    
+
     
     func retrieveCurrentWeek() {
         

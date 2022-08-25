@@ -23,6 +23,7 @@ class gymFloContext: ObservableObject {
             .store(in: &cancellables)
     }
     
+    
     func createProgram(with name: String) {
         let program = Program(name: name)
         programs.append(program)

@@ -80,7 +80,6 @@ struct TodayView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            
                             ForEach($routines) { $routine in
                                 RoutineCell(routine: routine, height: 164, width: 164)
                                     .onTapGesture {
@@ -90,10 +89,9 @@ struct TodayView: View {
                         }
                     }
                 } else {
-                    
-                    ForEach($routines) { routine in
-                        ForEach(routine.dailyWorkouts) { dailyWorkout in
-                            WorkoutCardView(dailyWorkout: dailyWorkout)
+                    ForEach($routines) { $routine in
+                        ForEach($routine.dailyWorkouts) { $dailyWorkout in
+                            TodayWorkoutCardView(dailyWorkout: $dailyWorkout)
                         }
                     }
                 }
@@ -104,13 +102,12 @@ struct TodayView: View {
         }
         .padding()
         .padding(.top)
-        
     }
     
     
     func createDailyWorkouts(routine: inout Routine, templates: [Workout]) {
         for template in templates {
-            var newDailyWorkout = DailyWorkout(name: template.name, date: Date())
+            var newDailyWorkout = DailyWorkout(name: template.name, date: viewModel.currentDay)
             
             for _ in 0..<template.sets {
                 let newWorkoutSet = Workout(name: template.name, sets: template.sets, reps: template.reps)

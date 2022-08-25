@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct WorkoutCardView: View {
+struct TodayWorkoutCardView: View {
     
     @Binding var dailyWorkout: DailyWorkout
     
@@ -20,8 +20,18 @@ struct WorkoutCardView: View {
                 WorkoutHeader(dailyWorkout: $dailyWorkout)
                 List {
                     ForEach($dailyWorkout.workoutSets) { $singleSet in
-                        let setNumber = dailyWorkout.workoutSets.firstIndex(where: { $0.id == singleSet.id})!
-                        TodayWorkoutSetCell(singleSet: $singleSet, setNumber: "\(setNumber + 1)")
+                        
+                        let setIndex = dailyWorkout.workoutSets.firstIndex(where: { $0.id == singleSet.id})!
+                        
+                        TodayWorkoutSetCell(singleSet: $singleSet, setNumber: "\(setIndex + 1)")
+                            .swipeActions {
+                                Button(role: .destructive) {
+                                    deleteSingleSet(index: setIndex)
+                                } label: {
+                                    Label("Delete", systemImage: "trash.fill")
+                                }
+                                .tint(.brandPrimary)
+                            }
                     }
                     .listRowSeparator(.hidden)
                     .padding(.horizontal, 22)
@@ -29,7 +39,7 @@ struct WorkoutCardView: View {
                 .listStyle(.plain)
                 
                 Button {
-                    print("Added")
+                    
                 } label: {
                     AddButton()
                 }
@@ -53,6 +63,7 @@ struct WorkoutHeader: View {
                 .font(.title.bold())
             Spacer()
             Button {
+                print("PSSSYYDUUCK")
                 isEditing.toggle()
                 if isEditing == false {
                     editingThang?.wrappedValue = .inactive
@@ -87,11 +98,12 @@ struct TodayWorkoutSetCell: View {
     
     var body: some View {
         
-        HStack(spacing: 54) {
+        HStack(spacing: 44) {
             Text(setNumber)
                 .font(.title2)
                 .lineLimit(1)
                 .minimumScaleFactor(0.65)
+            
             TextField("Weight..", value: $singleSet.weight, format: .number)
                 .font(.title2)
                 .lineLimit(1)
@@ -135,9 +147,15 @@ struct Dot: View {
     }
 }
 
+extension TodayWorkoutCardView {
+    
+    func deleteSingleSet(index: Int) {
+        dailyWorkout.workoutSets.remove(at: index)
+    }
+}
 
 
-//struct WorkoutCardView_Previews: PreviewProvider {
+//struct TodayWorkoutCardView_Previews: PreviewProvider {
 //
 //    static var previews: some View {
 //        WorkoutCardView()
