@@ -21,7 +21,6 @@ struct TodayView: View {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
                             ForEach(viewModel.currentWeek, id: \.self) { day in
-                                
                                 VStack(spacing: 10) {
                                     Text(viewModel.extractDate(date: day, format: "dd"))
                                         .font(.system(size: 15))
