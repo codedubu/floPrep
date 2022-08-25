@@ -11,11 +11,9 @@ struct Routine: Identifiable, Codable, Equatable {
     var id = UUID()
     var name: String
     var workoutTemplates: [Workout]
-    var dailyWorkouts: [DailyWorkout]
     
-    init(name: String, workoutTemplates: [Workout] = [], dailyWorkouts: [DailyWorkout] = []) {
+    init(name: String, workoutTemplates: [Workout] = []) {
         self.name               = name
         self.workoutTemplates   = workoutTemplates
-        self.dailyWorkouts      = dailyWorkouts
     }
 }

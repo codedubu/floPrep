@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct WorkoutCompletionView: View {
-    @Binding var dailyWorkout: DailyWorkout
+    @Binding var exercise: Exercise
 
     var body: some View {
         HStack(alignment: .top, spacing: 30) {
@@ -29,7 +29,7 @@ struct WorkoutCompletionView: View {
             }
             
             VStack {
-                TodayWorkoutCardView(dailyWorkout: $dailyWorkout)
+                TodayWorkoutCardView(exercise: $exercise)
             }
 //            .foregroundColor(dailyWorkout.isCompleted ?  .white : .black)
             .padding()

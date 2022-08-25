@@ -36,7 +36,7 @@ struct EditProgramView: View {
                 Text("Save Routine")
             }
             
-            NavigationLink(destination: TodayView(routines: $program.routines)) {
+            NavigationLink(destination: TodayView(program: $program)) {
                 TrainingButton()
             }
             .disabled(program.routines.isEmpty || program.name.isEmpty)

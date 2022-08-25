@@ -9,12 +9,8 @@ import Foundation
 import SwiftUI
 
 final class TodayViewModel: ObservableObject {
-    
-    // a Program that has our DailyWorkouts stored.
-        
+            
     // program.trackedWorkouts
-    
-    // filter the days that match the thang
     
     
     @Published var storedWorkouts = [

@@ -11,9 +11,11 @@ struct Program: Identifiable, Codable, Equatable {
     var id = UUID()
     var name: String
     var routines: [Routine]
+    var trackedWorkouts: [Exercise]
     
-    init(name: String, routines: [Routine] = []) {
+    init(name: String, routines: [Routine] = [], trackedWorkouts: [Exercise] = []) {
         self.name       = name
         self.routines   = routines
+        self.trackedWorkouts = trackedWorkouts
     }
 }

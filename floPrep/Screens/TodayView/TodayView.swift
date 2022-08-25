@@ -10,7 +10,7 @@ import SwiftUI
 struct TodayView: View {
     
     @StateObject var viewModel = TodayViewModel()
-    @Binding var routines: [Routine]
+    @Binding var program: Program
     @Namespace var animation
     
     var body: some View {
@@ -80,7 +80,7 @@ struct TodayView: View {
                     
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack {
-                            ForEach($routines) { $routine in
+                            ForEach($program.routines) { $routine in
                                 RoutineCell(routine: routine, height: 164, width: 164)
                                     .onTapGesture {
                                         createDailyWorkouts(routine: &routine, templates: routine.workoutTemplates)
@@ -89,10 +89,8 @@ struct TodayView: View {
                         }
                     }
                 } else {
-                    ForEach($routines) { $routine in
-                        ForEach($routine.dailyWorkouts) { $dailyWorkout in
-                            TodayWorkoutCardView(dailyWorkout: $dailyWorkout)
-                        }
+                    ForEach($program.trackedWorkouts) { $exercise in
+                            TodayWorkoutCardView(exercise: $exercise)
                     }
                 }
             }
@@ -107,14 +105,14 @@ struct TodayView: View {
     
     func createDailyWorkouts(routine: inout Routine, templates: [Workout]) {
         for template in templates {
-            var newDailyWorkout = DailyWorkout(name: template.name, date: viewModel.currentDay)
+            var newDailyWorkout = Exercise(name: template.name, date: viewModel.currentDay)
             
             for _ in 0..<template.sets {
                 let newWorkoutSet = Workout(name: template.name, sets: template.sets, reps: template.reps)
-                newDailyWorkout.workoutSets.append(newWorkoutSet)
+                newDailyWorkout.sets.append(newWorkoutSet)
             }
             
-            routine.dailyWorkouts.append(newDailyWorkout)
+            program.trackedWorkouts.append(newDailyWorkout)
         }
     }
 }
