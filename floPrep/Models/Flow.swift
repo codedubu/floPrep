@@ -10,7 +10,7 @@ import Foundation
 struct Flow: Identifiable, Codable, Equatable {
     var id = UUID()
     var name: String
-    var date: Date
+    var date: Date?
     var sets: [Workout]
     
     init(name: String, sets: [Workout] = [], date: Date = Date()) {

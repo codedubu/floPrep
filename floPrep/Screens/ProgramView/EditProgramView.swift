@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EditProgramView: View {
+    @ObservedObject var gymFloContext: gymFloContext
     @Binding var program: Program
     @State private var routineName = ""
     
@@ -31,7 +32,7 @@ struct EditProgramView: View {
                 Text("Save Routine")
             }
             
-            NavigationLink(destination: TodayView(program: $program)) {
+            NavigationLink(destination: TodayView(gymFloContext: gymFloContext, program: $program)) {
                 TrainingButton()
             }
             .disabled(program.routines.isEmpty || program.name.isEmpty)
@@ -48,8 +49,8 @@ extension EditProgramView {
     }
 }
 
-struct EditProgramView_Previews: PreviewProvider {
-    static var previews: some View {
-        EditProgramView(program: .constant(Program(name: "Fierce Five")))
-    }
-}
+//struct EditProgramView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditProgramView(program: .constant(Program(name: "Fierce Five")))
+//    }
+//}

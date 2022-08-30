@@ -23,7 +23,7 @@ struct ProgramView: View {
                 ForEach($gymFloContext.programs) { $program in
                     ZStack {
                         ProgramCell(program: program)
-                        NavigationLink(destination: EditProgramView(program: $program)) {
+                        NavigationLink(destination: EditProgramView(gymFloContext: gymFloContext, program: $program)) {
                             EmptyView()
                         }
                         .frame(width:0)

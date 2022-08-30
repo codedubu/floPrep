@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TodayView: View {
     
-    @StateObject var viewModel = TodayViewModel()
+    @ObservedObject var gymFloContext: gymFloContext
     @Binding var program: Program
     @Namespace var animation
     
@@ -20,26 +20,26 @@ struct TodayView: View {
                 Section {
                     ScrollView(.horizontal, showsIndicators: false) {
                         HStack(spacing: 10) {
-                            ForEach(viewModel.currentWeek, id: \.self) { day in
+                            ForEach(gymFloContext.currentWeek, id: \.self) { day in
                                 VStack(spacing: 10) {
-                                    Text(viewModel.extractDate(date: day, format: "dd"))
+                                    Text(gymFloContext.extractDate(date: day, format: "dd"))
                                         .font(.system(size: 15))
                                         .fontWeight(.semibold)
                                     
-                                    Text(viewModel.extractDate(date: day, format: "EEE"))
+                                    Text(gymFloContext.extractDate(date: day, format: "EEE"))
                                         .font(.system(size: 14))
                                     
                                     Circle()
                                         .fill(.white)
                                         .frame(width:8, height: 8)
-                                        .opacity(viewModel.isToday(date: day) ? 1 : 0)
+                                        .opacity(gymFloContext.isToday(date: day) ? 1 : 0)
                                 }
-                                .foregroundStyle(viewModel.isToday(date: day) ? .primary : .tertiary)
-                                .foregroundColor(viewModel.isToday(date: day) ? .white : .brandPrimary)
+                                .foregroundStyle(gymFloContext.isToday(date: day) ? .primary : .tertiary)
+                                .foregroundColor(gymFloContext.isToday(date: day) ? .white : .brandPrimary)
                                 .frame(width: 45, height: 90)
                                 .background(
                                     ZStack {
-                                        if viewModel.isToday(date: day) {
+                                        if gymFloContext.isToday(date: day) {
                                             RoundedRectangle(cornerRadius: 14)
                                                 .fill(Color.brandPrimary)
                                                 .matchedGeometryEffect(id: "CURRENTDAY", in: animation)
@@ -48,7 +48,7 @@ struct TodayView: View {
                                 .contentShape(RoundedRectangle(cornerRadius: 14))
                                 .onTapGesture {
                                     withAnimation {
-                                        viewModel.currentDay = day
+                                        gymFloContext.currentDay = day
                                         print(day)
                                     }
                                 }
@@ -71,7 +71,7 @@ struct TodayView: View {
         
         LazyVStack(spacing: 18) {
             
-            if let workouts = viewModel.filteredWorkouts {
+            if let workouts = gymFloContext.filteredWorkouts {
                 
                 if workouts.isEmpty {
                     Text("What's the plan, pal?")
@@ -89,14 +89,14 @@ struct TodayView: View {
                         }
                     }
                 } else {
-                    ForEach($program.trackedWorkouts) { $flow in
+                    ForEach($gymFloContext.trackedWorkouts) { $flow in
                             TodayWorkoutCardView(flow: $flow)
                     }
                 }
             }
         }
-        .onChange(of: viewModel.currentDay) { newValue in
-            viewModel.filterTodayWorkouts()
+        .onChange(of: gymFloContext.currentDay) { newValue in
+            gymFloContext.filterTodayWorkouts()
         }
         .padding()
         .padding(.top)
@@ -105,14 +105,14 @@ struct TodayView: View {
     
     func createDailyWorkouts(routine: inout Routine, templates: [Workout]) {
         for template in templates {
-            var newFlow = Flow(name: template.name, date: viewModel.currentDay)
+            var newFlow = Flow(name: template.name, date: gymFloContext.currentDay)
             
             for _ in 0..<template.sets {
                 let newWorkoutSet = Workout(name: template.name, sets: template.sets, reps: template.reps)
                 newFlow.sets.append(newWorkoutSet)
             }
             
-            program.trackedWorkouts.append(newFlow)
+            gymFloContext.trackedWorkouts.append(newFlow)
         }
     }
 }
