@@ -70,7 +70,6 @@ struct TodayView: View {
     func WorkoutsView() -> some View {
         
         LazyVStack(spacing: 18) {
-            
             if let workouts = viewModel.filteredWorkouts {
                 
                 if workouts.isEmpty {
@@ -90,16 +89,34 @@ struct TodayView: View {
                     }
                 } else {
                     ForEach($program.trackedWorkouts) { $flow in
-                            TodayWorkoutCardView(flow: $flow)
+                        TodayWorkoutCardView(flow: $flow)
                     }
                 }
             }
         }
         .onChange(of: viewModel.currentDay) { newValue in
-            viewModel.filterTodayWorkouts()
+            filterTodayWorkouts()
         }
         .padding()
         .padding(.top)
+    }
+    
+    
+    func filterTodayWorkouts() {
+        DispatchQueue.global(qos: .userInteractive).async {
+            
+            let calendar = Calendar.current
+            let filtered = program.trackedWorkouts.filter {
+                return calendar.isDate($0.date, inSameDayAs: viewModel.currentDay)
+            }
+            
+            DispatchQueue.main.async {
+                withAnimation {
+                    viewModel.filteredWorkouts = filtered
+                    dump(filtered)
+                }
+            }
+        }
     }
     
     

@@ -13,13 +13,11 @@ struct Workout: Identifiable, Codable, Equatable {
     var sets: Int
     var reps: Int
     var weight: Int? = nil
-    var workoutDate: Date
     
-    init(name: String, sets: Int, reps: Int, weight: Int? = nil, workoutDate: Date = Date()) {
+    init(name: String, sets: Int, reps: Int, weight: Int? = nil) {
         self.name           = name
         self.sets           = sets
         self.reps           = reps
         self.weight         = weight
-        self.workoutDate    = workoutDate
     }
 }

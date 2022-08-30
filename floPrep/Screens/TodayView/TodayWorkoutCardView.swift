@@ -63,7 +63,6 @@ struct WorkoutHeader: View {
                 .font(.title.bold())
             Spacer()
             Button {
-                print("PSSSYYDUUCK")
                 isEditing.toggle()
                 if isEditing == false {
                     editingThang?.wrappedValue = .inactive
